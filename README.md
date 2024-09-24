@@ -1,1 +1,1 @@
-# -rock-scissors-paper-game
+Rock Scissors Paper Game with dark and light mode

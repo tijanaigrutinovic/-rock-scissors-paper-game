@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tijana Igrutinovic</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Consolas font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Consolas:wght@200..800&display=swap" rel="stylesheet">
+    
+    <!-- Courier Prime font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+</head>
+<body >
+    <button class="theme-toggle" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite">
+        <svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
+          <mask class="moon" id="moon-mask">
+            <rect x="0" y="0" width="100%" height="100%" fill="white" />
+            <circle cx="24" cy="10" r="6" fill="black" />
+        </mask>
+        <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor" />
+          <g class="sun-beams" stroke="currentColor">
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </g>
+        </svg>
+      </button>
+    <section class="container">
+        <div class="result-field">
+            <div class="result-images">
+                <span class="user-result">
+                    <img src="src/images/rock-hand.png" alt="">
+                </span>
+                <span class="computer-result">
+                    <img src="src/images/rock-comp-white.png" alt="">
+                </span>
+            </div>
+            <div class="result">
+                Let's Play
+            </div>
+        </div>
+
+        <div class="options">
+            <span class="option-image">
+                <img src="src/images/rock-hand.png" alt="">
+                <p>Rock</p>
+            </span>
+            <span class="option-image">
+                <img src="src/images/paper-hand.png" alt="">
+                <p>Paper</p>
+            </span>
+            <span class="option-image">
+                <img src="src/images/scissors-hand.png" alt="">
+                <p>Scissors</p>
+            </span>
+        </div>
+    </section>
+</body>
+<script src="src/js/dark-light-mode.js"></script> 
+
+<script src="src/js/index.js"></script> 
+
+</html>

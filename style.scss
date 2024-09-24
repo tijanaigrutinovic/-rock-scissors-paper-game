@@ -1,0 +1,446 @@
+
+:root {
+   
+    --background-color: #000;
+    --text-color: #FFFFFF;
+}
+
+[data-theme='light'] {
+    
+    --background-color: #FFF;
+    --text-color: #000;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    background-color: var(--background-color);
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+}
+  //sun moon animation
+
+  @import"https://unpkg.com/open-props/easings.min.css";
+.sun-and-moon>:is(.moon,.sun,.sun-beams){
+    transform-origin:center center
+}
+.sun-and-moon>:is(.moon,.sun){
+    fill:var(--icon-fill)
+}
+.theme-toggle:is(:hover,:focus-visible)>.sun-and-moon>:is(.moon,.sun){
+    fill:var(--icon-fill-hover)
+}
+.sun-and-moon>.sun-beams{
+    stroke:var(--icon-fill);
+    stroke-width:2px
+}
+.theme-toggle:is(:hover,:focus-visible) .sun-and-moon>.sun-beams{
+    stroke:var(--icon-fill-hover)
+}
+[data-theme=dark] .sun-and-moon>.sun{
+    transform:scale(1.75)
+}
+[data-theme=dark] .sun-and-moon>.sun-beams{
+    opacity:0
+}
+[data-theme=dark] .sun-and-moon>.moon>circle{
+    transform:translate(-7px)
+}
+@supports (cx: 1){
+    [data-theme=dark] .sun-and-moon>.moon>circle{
+        transform:translate(0);
+        cx:17
+    }
+}
+@media (prefers-reduced-motion: no-preference){
+    .sun-and-moon>.sun{
+        transition:transform .5s var(--ease-elastic-3)
+    }
+    .sun-and-moon>.sun-beams{
+        transition:transform .5s var(--ease-elastic-4),opacity .5s var(--ease-3)
+    }
+    .sun-and-moon .moon>circle{
+        transition:transform .25s var(--ease-out-5)
+    }
+    @supports (cx: 1){
+        .sun-and-moon .moon>circle{
+            transition:cx .25s var(--ease-out-5)
+        }
+    }
+    [data-theme=dark] .sun-and-moon>.sun{
+        transform:scale(1.75);
+        transition-timing-function:var(--ease-3);
+        transition-duration:.25s
+    }
+    [data-theme=dark] .sun-and-moon>.sun-beams{
+        transform:rotate(-25deg);
+        transition-duration:.15s
+    }
+    [data-theme=dark] .sun-and-moon>.moon>circle{
+        transition-delay:.25s;
+        transition-duration:.5s
+    }
+}
+.theme-toggle{
+    --size: 2rem;
+    --icon-fill: hsl(210 10% 30%);
+    --icon-fill-hover: hsl(210 10% 15%);
+    background:none;
+    border:none;
+    padding:0;
+    inline-size:var(--size);
+    block-size:var(--size);
+    aspect-ratio:1;
+    border-radius:50%;
+    cursor:pointer;
+    touch-action:manipulation;
+    -webkit-tap-highlight-color:transparent;
+    outline-offset:5px;
+    position: fixed;
+    z-index: 100;
+    top: 24px;
+    right: 24px;
+    @media screen and (max-width: 1100px) {
+        right: 80px;
+    }
+}
+.theme-toggle>svg{
+    inline-size:100%;
+    block-size:100%;
+    stroke-linecap:round
+}
+[data-theme=dark] .theme-toggle{
+    --icon-fill: hsl(210 10% 70%);
+    --icon-fill-hover: hsl(210 15% 90%) 
+}
+@media (hover: none){
+    .theme-toggle{
+        --size: 48px;
+        @media screen and (max-width: 1100px) {
+            --size: 40px;
+        }
+    }
+}
+
+html{
+    block-size:100%;
+    color-scheme:light
+}
+html[data-theme=dark]{
+    color-scheme:dark
+}
+@supports not (color-scheme: dark){
+    html[data-theme=dark]{
+        background:#111
+    }
+}
+
+[data-theme=dark] .github-corner{
+    fill:indigo
+}
+@-webkit-keyframes octocat-wave{
+    0%,to{
+        transform:rotate(0)
+    }
+    20%,60%{
+        transform:rotate(-25deg)
+    }
+    40%,80%{
+        transform:rotate(10deg)
+    }
+}
+@keyframes octocat-wave{
+    0%,to{
+        transform:rotate(0)
+    }
+    20%,60%{
+        transform:rotate(-25deg)
+    }
+    40%,80%{
+        transform:rotate(10deg)
+    }
+}
+
+
+[data-theme="dark"] .sun-and-moon .moon {
+    transform: translateX(0) scale(1); /* Mesec je vidljiv */
+    fill: var(--icon-fill); /* Dodeljuje boju mesecu */
+}
+
+
+::selection {
+  color: #fff;
+  background-color: #7d2ae8;
+}
+
+.result-images{
+    display: flex;
+    column-gap: 7rem;
+    justify-content: center;
+    img{
+        width: 100px;
+    }
+}
+
+
+.container{
+    padding: 2rem 7rem;
+    border-radius: 14px;
+    width: 400px;
+}
+
+.container.start .user-result{
+    transform-origin: left;
+    animation: userShake 0.7s ease infinite; 
+}
+
+
+@keyframes userShake {
+    50% {
+      transform: rotate(10deg);
+    }
+}
+
+.container.start .computer-result{
+    transform-origin: right;
+    animation: cpuShake 0.7s ease infinite;
+}
+
+@keyframes cpuShake {
+    50% {
+      transform: rotate(-10deg);
+    }
+  }
+
+.container.container.start{
+    pointer-events: none;
+}
+.user-result{
+    img{
+        transform: rotate(90deg);
+    }
+}
+
+.computer-result{
+    color: red;
+    img{
+        transform: rotate(-90deg) rotateY(180deg);
+    }
+}
+
+.result{
+    text-align: center;
+    font-size: 32px;
+    font-family: GeistMono, monospace;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.option-image{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0.5;
+    transition: opacity 0.3 ease;
+    cursor: pointer;
+    img{
+        width: 50px;
+        pointer-events: none;
+    }
+    p{
+        font-size: 18px !important;
+        font-family: GeistMono, monospace !important;
+        margin-top: 16px !important;
+        color: var(--text-color) !important;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.option-image:hover{
+    opacity: 1;
+}
+.option-image.active{
+    opacity: 1;
+}
+
+.options{
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+    justify-content: space-between;
+}
+
+  
+.animated-words {
+    display: flex;
+    justify-content: center; 
+    position: relative;
+    height: 44px;
+}
+
+.word {
+    font-size: 32px;
+    opacity: 0;
+    margin: 0 10px;
+    transition: opacity 0.3s ease;
+    transform: scale(1.1); 
+    position: absolute;
+    color: var(--text-color);
+}
+
+
+.sun-and-moon>:is(.moon,.sun,.sun-beams){
+    transform-origin:center center
+}
+.sun-and-moon>:is(.moon,.sun){
+    fill:var(--icon-fill)
+}
+.theme-toggle:is(:hover,:focus-visible)>.sun-and-moon>:is(.moon,.sun){
+    fill:var(--icon-fill-hover)
+}
+.sun-and-moon>.sun-beams{
+    stroke:var(--icon-fill);
+    stroke-width:2px
+}
+.theme-toggle:is(:hover,:focus-visible) .sun-and-moon>.sun-beams{
+    stroke:var(--icon-fill-hover)
+}
+[data-theme=dark] .sun-and-moon>.sun{
+    transform:scale(1.75)
+}
+[data-theme=dark] .sun-and-moon>.sun-beams{
+    opacity:0
+}
+[data-theme=dark] .sun-and-moon>.moon>circle{
+    transform:translate(-7px)
+}
+@supports (cx: 1){
+    [data-theme=dark] .sun-and-moon>.moon>circle{
+        transform:translate(0);
+        cx:17
+    }
+}
+@media (prefers-reduced-motion: no-preference){
+    .sun-and-moon>.sun{
+        transition:transform .5s var(--ease-elastic-3)
+    }
+    .sun-and-moon>.sun-beams{
+        transition:transform .5s var(--ease-elastic-4),opacity .5s var(--ease-3)
+    }
+    .sun-and-moon .moon>circle{
+        transition:transform .25s var(--ease-out-5)
+    }
+    @supports (cx: 1){
+        .sun-and-moon .moon>circle{
+            transition:cx .25s var(--ease-out-5)
+        }
+    }
+    [data-theme=dark] .sun-and-moon>.sun{
+        transform:scale(1.75);
+        transition-timing-function:var(--ease-3);
+        transition-duration:.25s
+    }
+    [data-theme=dark] .sun-and-moon>.sun-beams{
+        transform:rotate(-25deg);
+        transition-duration:.15s
+    }
+    [data-theme=dark] .sun-and-moon>.moon>circle{
+        transition-delay:.25s;
+        transition-duration:.5s
+    }
+}
+.theme-toggle{
+    --size: 2rem;
+    --icon-fill: hsl(210 10% 30%);
+    --icon-fill-hover: hsl(210 10% 15%);
+    background:none;
+    border:none;
+    padding:0;
+    inline-size:var(--size);
+    block-size:var(--size);
+    aspect-ratio:1;
+    border-radius:50%;
+    cursor:pointer;
+    touch-action:manipulation;
+    -webkit-tap-highlight-color:transparent;
+    outline-offset:5px;
+    position: fixed;
+    z-index: 100;
+    top: 24px;
+    right: 24px;
+    @media screen and (max-width: 1100px) {
+        right: 90px;
+        top: 16px;
+    }
+}
+.theme-toggle>svg{
+    inline-size:100%;
+    block-size:100%;
+    stroke-linecap:round
+}
+[data-theme=dark] .theme-toggle{
+    --icon-fill: hsl(210 10% 70%);
+    --icon-fill-hover: hsl(210 15% 90%) 
+}
+@media (hover: none){
+    .theme-toggle{
+        --size: 48px;
+        @media screen and (max-width: 1100px) {
+            --size: 40px;
+        }
+    }
+}
+
+html{
+    block-size:100%;
+    color-scheme:light
+}
+html[data-theme=dark]{
+    color-scheme:dark
+}
+@supports not (color-scheme: dark){
+    html[data-theme=dark]{
+        background:#111
+    }
+}
+
+[data-theme=dark] .github-corner{
+    fill:indigo
+}
+@-webkit-keyframes octocat-wave{
+    0%,to{
+        transform:rotate(0)
+    }
+    20%,60%{
+        transform:rotate(-25deg)
+    }
+    40%,80%{
+        transform:rotate(10deg)
+    }
+}
+@keyframes octocat-wave{
+    0%,to{
+        transform:rotate(0)
+    }
+    20%,60%{
+        transform:rotate(-25deg)
+    }
+    40%,80%{
+        transform:rotate(10deg)
+    }
+}
+
+
+[data-theme="dark"] .sun-and-moon .moon {
+    transform: translateX(0) scale(1); /* Mesec je vidljiv */
+    fill: var(--icon-fill); /* Dodeljuje boju mesecu */
+}
+
+
+
